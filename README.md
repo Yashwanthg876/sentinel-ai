@@ -1,5 +1,5 @@
 # SentinelAI
-SentinelAI is an AI-powered Cyber Incident Assistance Platform.
+SentinelAI is an AI-powered Cyber Incident Assistance Platform (India-first).
 
 ## Features
 - RAG-based SOP retrieval
