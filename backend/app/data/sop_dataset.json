@@ -1,0 +1,163 @@
+[
+    {
+        "issue_id": "FIN001",
+        "issue_type": "Financial Fraud",
+        "subcategory": "UPI Scam",
+        "severity_level": "High",
+        "platform": "Banking / UPI",
+        "region": "India",
+        "legal_reference": [
+            "IT Act 2000 - Section 66C",
+            "IPC 420"
+        ],
+        "immediate_actions": [
+            "Call bank helpline immediately",
+            "Block card / UPI ID",
+            "Report within 24 hours"
+        ],
+        "evidence_required": [
+            "Transaction ID",
+            "Bank SMS screenshot",
+            "Fraudulent phone number"
+        ],
+        "reporting_steps": [
+            "File complaint on NCRP portal",
+            "Contact nearest cyber police station"
+        ],
+        "prevention_tips": [
+            "Never share OTP",
+            "Enable transaction alerts"
+        ],
+        "keywords": [
+            "UPI fraud",
+            "scam",
+            "bank fraud",
+            "money lost"
+        ]
+    },
+    {
+        "issue_id": "ACC001",
+        "issue_type": "Account Hacked",
+        "subcategory": "Instagram",
+        "severity_level": "High",
+        "region": "India",
+        "immediate_actions": [
+            "Check email for login alerts",
+            "Use Instagram account recovery",
+            "Secure linked email account"
+        ],
+        "evidence_required": [
+            "Screenshot of suspicious login",
+            "Profile URL",
+            "Registered email ID"
+        ],
+        "reporting_steps": [
+            "Report via Instagram Help Center",
+            "File complaint on NCRP portal"
+        ],
+        "prevention_tips": [
+            "Enable two-factor authentication",
+            "Use strong password"
+        ],
+        "keywords": [
+            "instagram hacked",
+            "account taken over",
+            "password changed"
+        ]
+    },
+    {
+        "issue_id": "CYB001",
+        "issue_type": "Cyberbullying",
+        "subcategory": "Social Media Hate Speech",
+        "severity_level": "Medium",
+        "platform": "Twitter / X",
+        "region": "Global",
+        "immediate_actions": [
+            "Do not engage with the bully",
+            "Block the abusive accounts",
+            "Take screenshots of abusive messages"
+        ],
+        "evidence_required": [
+            "Screenshots of messages/comments",
+            "Links to the abusive posts",
+            "Profile URLs of attackers"
+        ],
+        "reporting_steps": [
+            "Report the tweets and accounts to Twitter",
+            "File complaint on NCRP portal under Cyber Bullying"
+        ],
+        "prevention_tips": [
+            "Make profile private",
+            "Restrict who can reply to your tweets"
+        ],
+        "keywords": [
+            "cyberbullying",
+            "harassment",
+            "hate speech",
+            "twitter abuse"
+        ]
+    },
+    {
+        "issue_id": "FIN002",
+        "issue_type": "Financial Fraud",
+        "subcategory": "Credit Card Fraud",
+        "severity_level": "High",
+        "platform": "Banking",
+        "region": "Global",
+        "immediate_actions": [
+            "Call bank to freeze the credit card",
+            "Review recent transactions",
+            "Change netbanking passwords"
+        ],
+        "evidence_required": [
+            "Credit card statement",
+            "SMS alerts of unauthorized transactions",
+            "Details of the merchant where fraud occurred"
+        ],
+        "reporting_steps": [
+            "Dispute the charge with your bank",
+            "File a police report if required by bank"
+        ],
+        "prevention_tips": [
+            "Do not save card details on untrusted websites",
+            "Enable international transaction limits"
+        ],
+        "keywords": [
+            "credit card fraud",
+            "unauthorized transaction",
+            "card cloned"
+        ]
+    },
+    {
+        "issue_id": "MAL001",
+        "issue_type": "Malware Infection",
+        "subcategory": "Ransomware",
+        "severity_level": "Critical",
+        "platform": "Windows",
+        "region": "Global",
+        "immediate_actions": [
+            "Disconnect device from the internet",
+            "Do not pay the ransom",
+            "Boot into safe mode"
+        ],
+        "evidence_required": [
+            "Ransom note screenshot",
+            "Encrypted file samples",
+            "Email or link that caused the infection"
+        ],
+        "reporting_steps": [
+            "Report to national cyber emergency response team (CERT)",
+            "Seek professional incident response help"
+        ],
+        "prevention_tips": [
+            "Maintain offline backups",
+            "Keep OS and antivirus updated"
+        ],
+        "keywords": [
+            "ransomware",
+            "files encrypted",
+            "virus",
+            "hacked PC"
+        ]
+    }
+]
