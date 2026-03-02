@@ -31,7 +31,15 @@ class EmbeddingService:
 
     def search(self, query):
         query_vector = self.model.encode([query])
-        distances, indices = self.index.search(
-            np.array(query_vector).astype("float32"), k=1
-        )
-        return self.sop_data[indices[0][0]]
+        query_vector = np.array(query_vector).astype("float32")
+
+        distances, indices = self.index.search(query_vector, k=3)
+
+        results = []
+        for rank, idx in enumerate(indices[0]):
+            results.append({
+                "sop": self.sop_data[idx],
+                "distance": float(distances[0][rank])
+            })
+
+        return results

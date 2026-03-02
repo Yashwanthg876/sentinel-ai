@@ -6,7 +6,28 @@ embedding_service.load_data()
 embedding_service.create_embeddings()
 
 def generate_response(query: str):
-    sop = embedding_service.search(query)
+    sop_candidates = embedding_service.search(query)
+
+    # Sort by lowest distance
+    sop_candidates.sort(key=lambda x: x["distance"])
+
+    best_match = sop_candidates[0]
+    confidence_score = best_match["distance"]
+
+    CONFIDENCE_THRESHOLD = 0.75  # You can tune this
+
+    if confidence_score > CONFIDENCE_THRESHOLD:
+        return "⚠️ I'm not fully confident about the issue. Could you please provide more details about the cyber incident?"
+    
+    sop = best_match["sop"]
+
+    combined_context = f"""
+Issue Type: {sop['issue_type']}
+Immediate Actions: {sop['immediate_actions']}
+Evidence Required: {sop['evidence_required']}
+Reporting Steps: {sop['reporting_steps']}
+Prevention Tips: {sop['prevention_tips']}
+"""
 
     prompt = f"""
 You are SentinelAI, an AI-powered Cyber Incident Assistance System.
@@ -41,14 +62,9 @@ STRUCTURED FORMAT:
 📌 IMPORTANT NOTE:
 This is guidance information, not legal advice.
 
-Use ONLY the following SOP data:
+Use ONLY the following retrieved SOP data:
 
-Issue Type: {sop['issue_type']}
-
-Immediate Actions: {sop['immediate_actions']}
-Evidence Required: {sop['evidence_required']}
-Reporting Steps: {sop['reporting_steps']}
-Prevention Tips: {sop['prevention_tips']}
+{combined_context}
 
 User Query: {query}
 """
