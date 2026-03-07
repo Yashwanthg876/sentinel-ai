@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
-import { ShieldCheck, Send, AlertTriangle, Paperclip, X, Image as ImageIcon, Briefcase, MessageSquare, ClipboardList, CheckCircle } from "lucide-react";
+import { ShieldCheck, Send, AlertTriangle, Paperclip, X, Image as ImageIcon, Briefcase, MessageSquare, ClipboardList, CheckCircle, Mic } from "lucide-react";
 import "./App.css";
 
 function App() {
@@ -22,6 +22,7 @@ function App() {
 
   const [selectedLanguage, setSelectedLanguage] = useState("en");
   const [selectedAgent, setSelectedAgent] = useState("general");
+  const [isListening, setIsListening] = useState(false);
 
   // Cases State
   const [cases, setCases] = useState([]);
@@ -163,6 +164,41 @@ ${data.suggested_next_steps}
     } finally {
       setIsLoading(false);
     }
+  };
+
+  const startListening = () => {
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SpeechRecognition) {
+      alert("Your browser does not support Speech Recognition. Please try Chrome.");
+      return;
+    }
+
+    const recognition = new SpeechRecognition();
+    recognition.lang = selectedLanguage === "en" ? "en-US" :
+      selectedLanguage === "hi" ? "hi-IN" :
+        selectedLanguage === "ta" ? "ta-IN" : "te-IN";
+    recognition.interimResults = false;
+    recognition.maxAlternatives = 1;
+
+    recognition.onstart = () => {
+      setIsListening(true);
+    };
+
+    recognition.onresult = (event) => {
+      const transcript = event.results[0][0].transcript;
+      setInput(transcript);
+    };
+
+    recognition.onerror = (event) => {
+      console.error("Speech recognition error", event.error);
+      setIsListening(false);
+    };
+
+    recognition.onend = () => {
+      setIsListening(false);
+    };
+
+    recognition.start();
   };
 
   const sendMessage = async () => {
@@ -355,12 +391,20 @@ ${data.suggested_next_steps}
               <input
                 type="text"
                 className="input-box"
-                placeholder={selectedFile ? "Press send to analyze evidence..." : "Describe your cyber issue..."}
+                placeholder={selectedFile ? "Press send to analyze evidence..." : isListening ? "Listening... Speak now 🎤" : "Describe your cyber issue..."}
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && sendMessage()}
                 disabled={isLoading || selectedFile !== null}
               />
+              <button
+                className={`mic-button ${isListening ? 'listening' : ''}`}
+                onClick={startListening}
+                disabled={isLoading || selectedFile !== null}
+                title="Use Microphone"
+              >
+                <Mic size={20} />
+              </button>
               <button
                 className="send-button"
                 onClick={sendMessage}

@@ -124,5 +124,26 @@
     "sop_id": "FIN001",
     "confidence": 0.7781876921653748,
     "clarification_triggered": false
+  },
+  {
+    "timestamp": "2026-03-07T09:03:43.625934",
+    "query": "I got scammed on whatsapp",
+    "sop_id": "SCA001",
+    "confidence": 0.9480434656143188,
+    "clarification_triggered": false
+  },
+  {
+    "timestamp": "2026-03-07T09:07:00.106853",
+    "query": "I got scammed on whatsapp",
+    "sop_id": "SCA001",
+    "confidence": 0.9480434656143188,
+    "clarification_triggered": false
+  },
+  {
+    "timestamp": "2026-03-07T09:11:33.176165",
+    "query": "\u00ecnstagram is hacked",
+    "sop_id": "ACC001",
+    "confidence": 0.6016879677772522,
+    "clarification_triggered": false
   }
 ]
