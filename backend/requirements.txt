@@ -6,3 +6,6 @@ pydantic
 python-dotenv
 sentence-transformers
 ollama
+pytesseract
+python-multipart
+pillow
