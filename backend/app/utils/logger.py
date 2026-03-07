@@ -2,7 +2,8 @@ import json
 from datetime import datetime
 import os
 
-LOG_PATH = "app/logs/query_logs.json"
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+LOG_PATH = os.path.join(BASE_DIR, "logs", "query_logs.json")
 
 def log_query(query, sop_id, confidence, clarification_triggered):
     log_entry = {

@@ -10,7 +10,10 @@ class EmbeddingService:
         self.sop_data = []
 
     def load_data(self):
-        with open("app/data/sop_dataset.json", "r") as f:
+        import os
+        base_dir = os.path.dirname(os.path.dirname(__file__))
+        dataset_path = os.path.join(base_dir, "data", "sop_dataset.json")
+        with open(dataset_path, "r", encoding="utf-8") as f:
             self.sop_data = json.load(f)
 
     def create_embeddings(self):
