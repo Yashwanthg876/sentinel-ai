@@ -16,19 +16,43 @@ def generate_response(query: str, agent_type: str = "general", history: list = N
     best_match = sop_candidates[0]
     confidence_score = best_match["distance"]
 
+    history_context = ""
+    if history:
+        # Keep last 6 messages
+        recent_history = history[-6:]
+        history_str = "\n".join([f"{msg['sender'].capitalize()}: {msg['text']}" for msg in recent_history])
+        history_context = f"Conversation History:\n{history_str}\n"
+
     CONFIDENCE_THRESHOLD = 1.2  # You can tune this
 
-    clarification = False
-
+    # Follow-up Conversation Check
     if confidence_score > CONFIDENCE_THRESHOLD:
-        clarification = True
-        log_query(query, None, confidence_score, True)
-        return {
-            "answer": "⚠️ I'm not fully confident about the issue. Could you please provide more details?",
-            "issue_type": "Clarification Required",
-            "severity_level": "Unknown",
-            "confidence": round(confidence_score, 2)
-        }
+        if history and len(history) > 0:
+            log_query(query, "follow-up", confidence_score, False)
+            follow_up_prompt = f"""
+You are SentinelAI, a helpful Cyber Incident Assistance System.
+
+The user is asking a follow-up question. Answer it directly and concisely based on the conversation history. Keep your answer brief to ensure a fast response time.
+
+{history_context}
+
+User Follow-up Query: {query}
+"""
+            answer = generate_completion(follow_up_prompt)
+            return {
+                "answer": answer,
+                "issue_type": "Follow-up",
+                "severity_level": "Unknown",
+                "confidence": round(confidence_score, 2)
+            }
+        else:
+            log_query(query, None, confidence_score, True)
+            return {
+                "answer": "⚠️ I'm not fully confident about the issue. Could you please provide more details?",
+                "issue_type": "Clarification Required",
+                "severity_level": "Unknown",
+                "confidence": round(confidence_score, 2)
+            }
     
     sop = best_match["sop"]
 
@@ -43,56 +67,39 @@ Prevention Tips: {sop['prevention_tips']}
 Legal References: {sop.get('legal_reference', 'No specific laws listed')}
 """
 
-    history_context = ""
-    if history:
-        # Keep last 6 messages (3 turns)
-        recent_history = history[-6:]
-        history_str = "\n".join([f"{msg['sender'].capitalize()}: {msg['text']}" for msg in recent_history])
-        history_context = f"Conversation History:\n{history_str}\n"
-
     length_instruction = ""
     if response_length == "brief":
-        length_instruction = "IMPORTANT: Keep the response extremely brief, summarizing the core steps only. Bullet points preferred."
+        length_instruction = "IMPORTANT: Keep the response extremely brief, summarizing the core steps only. Use short bullet points to maximize your generation speed."
     else:
-        length_instruction = "IMPORTANT: Provide a detailed and comprehensive explanation for each step."
+        length_instruction = "IMPORTANT: Provide a detailed explanation for each step."
 
     prompt = f"""
 You are SentinelAI, an AI-powered Cyber Incident Assistance System.
 
 {length_instruction}
 
-You MUST respond ONLY in the structured format below.
-Do NOT add extra sections.
-Do NOT change section titles.
-Do NOT skip sections.
+You MUST respond ONLY in the structured format below. Keep generation fast and concise.
 
 STRUCTURED FORMAT:
 
 🔎 ISSUE IDENTIFIED:
-(Briefly summarize the issue)
+(Briefly summarize)
 
 🚨 IMMEDIATE ACTION:
 - Step 1
-- Step 2
-- Step 3
 
 📂 EVIDENCE TO COLLECT:
 - Item 1
-- Item 2
 
 📝 REPORTING PROCESS:
 - Step 1
-- Step 2
 
 🛡️ PREVENTION TIPS:
 - Tip 1
-- Tip 2
 
-📌 IMPORTANT NOTE:
-This is guidance information, not legal advice.
+📌 NOTE: Guidance only, not legal advice.
 
 Use ONLY the following retrieved SOP data:
-
 {combined_context}
 
 {history_context}
