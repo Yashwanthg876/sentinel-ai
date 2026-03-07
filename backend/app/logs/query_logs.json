@@ -1,0 +1,100 @@
+[
+  {
+    "timestamp": "2026-03-04T14:35:00.155408",
+    "query": "test query from log test",
+    "sop_id": "ISSUE-123",
+    "confidence": 0.95,
+    "clarification_triggered": false
+  },
+  {
+    "timestamp": "2026-03-04T14:35:48.295259",
+    "query": "unclear query",
+    "sop_id": null,
+    "confidence": 0.45,
+    "clarification_triggered": true
+  },
+  {
+    "timestamp": "2026-03-04T14:55:04.769269",
+    "query": "phone hacked",
+    "sop_id": null,
+    "confidence": 1.195142149925232,
+    "clarification_triggered": true
+  },
+  {
+    "timestamp": "2026-03-04T14:55:16.540431",
+    "query": "my instagram is hacked",
+    "sop_id": "ACC001",
+    "confidence": 0.6744518876075745,
+    "clarification_triggered": false
+  },
+  {
+    "timestamp": "2026-03-04T14:55:21.841081",
+    "query": "my instagram is hacked",
+    "sop_id": "ACC001",
+    "confidence": 0.6744518876075745,
+    "clarification_triggered": false
+  },
+  {
+    "timestamp": "2026-03-04T14:55:32.555178",
+    "query": "my instagram is havcked",
+    "sop_id": null,
+    "confidence": 0.9975539445877075,
+    "clarification_triggered": true
+  },
+  {
+    "timestamp": "2026-03-04T15:01:10.920488",
+    "query": "my instagram is hacked",
+    "sop_id": "ACC001",
+    "confidence": 0.6744518876075745,
+    "clarification_triggered": false
+  },
+  {
+    "timestamp": "2026-03-04T15:01:33.679212",
+    "query": "my instagram is hacked",
+    "sop_id": "ACC001",
+    "confidence": 0.6744518876075745,
+    "clarification_triggered": false
+  },
+  {
+    "timestamp": "2026-03-04T15:01:59.793094",
+    "query": "my insatgram is hascked",
+    "sop_id": null,
+    "confidence": 1.3794190883636475,
+    "clarification_triggered": true
+  },
+  {
+    "timestamp": "2026-03-04T15:07:06.923479",
+    "query": "my instagram account is hacked",
+    "sop_id": "ACC001",
+    "confidence": 0.5625200271606445,
+    "clarification_triggered": false
+  },
+  {
+    "timestamp": "2026-03-04T15:07:17.221372",
+    "query": "my instagram account was hacked",
+    "sop_id": "ACC001",
+    "confidence": 0.5612847805023193,
+    "clarification_triggered": false
+  },
+  {
+    "timestamp": "2026-03-04T15:07:34.708979",
+    "query": "my instagram account was hacked",
+    "sop_id": "ACC001",
+    "confidence": 0.5612847805023193,
+    "clarification_triggered": false
+  },
+  {
+    "timestamp": "2026-03-04T15:08:01.266763",
+    "query": "my instagram account is hacked ",
+    "sop_id": "ACC001",
+    "confidence": 0.5625200271606445,
+    "clarification_triggered": false
+  },
+  {
+    "timestamp": "2026-03-04T15:08:33.558434",
+    "query": "my instagram is hacked",
+    "sop_id": "ACC001",
+    "confidence": 0.6744518876075745,
+    "clarification_triggered": false
+  }
+]

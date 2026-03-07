@@ -11,28 +11,33 @@
             "IPC 420"
         ],
         "immediate_actions": [
-            "Call bank helpline immediately",
-            "Block card / UPI ID",
-            "Report within 24 hours"
+            "Call bank helpline immediately to block further transactions",
+            "Block the linked debit/credit card or UPI ID via your banking app",
+            "Report the unauthorized transaction to your bank within 24 hours to limit liability"
         ],
         "evidence_required": [
-            "Transaction ID",
-            "Bank SMS screenshot",
-            "Fraudulent phone number"
+            "Transaction ID and exact timestamp",
+            "Screenshot of bank SMS or notification",
+            "Phone number or UPI ID of the scammer (if known)"
         ],
         "reporting_steps": [
-            "File complaint on NCRP portal",
-            "Contact nearest cyber police station"
+            "File a formal complaint on the NCRP portal (cybercrime.gov.in)",
+            "Contact your nearest cyber police station with printed evidence",
+            "Submit a dispute form to your bank branch"
         ],
         "prevention_tips": [
-            "Never share OTP",
-            "Enable transaction alerts"
+            "Never share OTPs, PINs, or passwords with anyone",
+            "Enable real-time transaction alerts for all accounts",
+            "Do not scan QR codes to receive money"
         ],
         "keywords": [
             "UPI fraud",
             "scam",
             "bank fraud",
-            "money lost"
+            "money lost",
+            "google pay",
+            "phonepe",
+            "paytm"
         ]
     },
     {
@@ -40,29 +45,33 @@
         "issue_type": "Account Hacked",
         "subcategory": "Instagram",
         "severity_level": "High",
-        "region": "India",
+        "region": "Global",
         "immediate_actions": [
-            "Check email for login alerts",
-            "Use Instagram account recovery",
-            "Secure linked email account"
+            "Check your registered email for any 'New Login' or 'Password Changed' alerts",
+            "Use the 'Forgot Password' or account recovery feature on the Instagram app",
+            "Immediately secure your linked email account by changing its password"
         ],
         "evidence_required": [
-            "Screenshot of suspicious login",
-            "Profile URL",
-            "Registered email ID"
+            "Screenshot of suspicious login location/device",
+            "Link to your original profile URL",
+            "Records of the original registered email ID and phone number"
         ],
         "reporting_steps": [
-            "Report via Instagram Help Center",
-            "File complaint on NCRP portal"
+            "Report the hack via the Instagram Help Center (help.instagram.com)",
+            "Ask friends to report the account as 'Hacked' from their profiles",
+            "File a complaint on the national cyber crime portal if financial loss or defamation occurred"
         ],
         "prevention_tips": [
-            "Enable two-factor authentication",
-            "Use strong password"
+            "Enable Two-Factor Authentication (2FA) using an authenticator app",
+            "Use a strong, unique password for every social media account",
+            "Do not click on suspicious 'verified badge' or 'copyright infringement' links sent via DM"
         ],
         "keywords": [
             "instagram hacked",
             "account taken over",
-            "password changed"
+            "password changed",
+            "can't login",
+            "locked out"
         ]
     },
     {
@@ -73,28 +82,32 @@
         "platform": "Twitter / X",
         "region": "Global",
         "immediate_actions": [
-            "Do not engage with the bully",
-            "Block the abusive accounts",
-            "Take screenshots of abusive messages"
+            "Do not reply or engage with the bully/attacker",
+            "Block and mute the abusive accounts immediately",
+            "Document everything before reporting in case the attacker deletes the evidence"
         ],
         "evidence_required": [
-            "Screenshots of messages/comments",
-            "Links to the abusive posts",
-            "Profile URLs of attackers"
+            "Screenshots of the abusive messages or comments (do not alter them)",
+            "Direct links (URLs) to the abusive posts",
+            "Profile URLs and usernames of the attackers"
         ],
         "reporting_steps": [
-            "Report the tweets and accounts to Twitter",
-            "File complaint on NCRP portal under Cyber Bullying"
+            "Report the individual tweets and the abusive accounts directly to the platform",
+            "File a complaint on the national cyber crime portal under 'Cyber Bullying/Harassment'",
+            "Contact a legal professional if the abuse contains direct physical threats"
         ],
         "prevention_tips": [
-            "Make profile private",
-            "Restrict who can reply to your tweets"
+            "Consider making your profile private temporarily",
+            "Use platform features to restrict who can reply to your posts",
+            "Filter specific words or phrases in your account settings"
         ],
         "keywords": [
             "cyberbullying",
             "harassment",
             "hate speech",
-            "twitter abuse"
+            "twitter abuse",
+            "threats",
+            "trolling"
         ]
     },
     {
@@ -105,27 +118,31 @@
         "platform": "Banking",
         "region": "Global",
         "immediate_actions": [
-            "Call bank to freeze the credit card",
-            "Review recent transactions",
-            "Change netbanking passwords"
+            "Call your bank's customer service to freeze the credit card instantly",
+            "Review your recent statements for any other unauthorized transactions",
+            "Change your net banking passwords immediately"
         ],
         "evidence_required": [
-            "Credit card statement",
-            "SMS alerts of unauthorized transactions",
-            "Details of the merchant where fraud occurred"
+            "Credit card statement highlighting the fraudulent charge",
+            "SMS or email alerts of unauthorized transactions",
+            "Details of the merchant name where the fraud occurred (if visible)"
         ],
         "reporting_steps": [
-            "Dispute the charge with your bank",
-            "File a police report if required by bank"
+            "Dispute the fraudulent charge with your bank immediately (often a zero-liability policy applies if reported promptly)",
+            "File a police report if required by the bank to process the dispute",
+            "Report to the cyber crime cell for investigation"
         ],
         "prevention_tips": [
-            "Do not save card details on untrusted websites",
-            "Enable international transaction limits"
+            "Do not save card details on untrusted or unknown websites",
+            "Disable international transaction capabilities when not traveling",
+            "Set up transaction limits for online and physical purchases"
         ],
         "keywords": [
             "credit card fraud",
             "unauthorized transaction",
-            "card cloned"
+            "card cloned",
+            "missing money",
+            "overcharged"
         ]
     },
     {
@@ -133,31 +150,141 @@
         "issue_type": "Malware Infection",
         "subcategory": "Ransomware",
         "severity_level": "Critical",
-        "platform": "Windows",
+        "platform": "Windows/Mac",
         "region": "Global",
         "immediate_actions": [
-            "Disconnect device from the internet",
-            "Do not pay the ransom",
-            "Boot into safe mode"
+            "Disconnect the infected device from the internet (Wi-Fi and Ethernet) immediately to prevent spreading",
+            "Do NOT pay the ransom, as there is no guarantee you will get your data back",
+            "Boot the system into Safe Mode to run diagnostic scans"
         ],
         "evidence_required": [
-            "Ransom note screenshot",
-            "Encrypted file samples",
-            "Email or link that caused the infection"
+            "Screenshot or picture (taken with another device) of the ransom note",
+            "Samples of the encrypted files (do not delete them yet)",
+            "The suspicious email, attachment, or link that likely caused the infection"
         ],
         "reporting_steps": [
-            "Report to national cyber emergency response team (CERT)",
-            "Seek professional incident response help"
+            "Report the incident to your national cyber emergency response team (e.g., CERT-In, CISA)",
+            "Seek professional incident response or IT support help",
+            "Check NoMoreRansom.org to see if a decryption key is publicly available for your specific ransomware"
         ],
         "prevention_tips": [
-            "Maintain offline backups",
-            "Keep OS and antivirus updated"
+            "Maintain regular, offline backups of your critical data (e.g., disconnected external hard drives)",
+            "Keep your operating system and antivirus software up to date",
+            "Never open suspicious email attachments or click unverified links"
         ],
         "keywords": [
             "ransomware",
             "files encrypted",
             "virus",
-            "hacked PC"
+            "hacked PC",
+            "pay bitcoin",
+            "locked out of computer"
+        ]
+    },
+    {
+        "issue_id": "PHS001",
+        "issue_type": "Phishing Attempt",
+        "subcategory": "Email Phishing",
+        "severity_level": "Medium",
+        "platform": "Email",
+        "region": "Global",
+        "immediate_actions": [
+            "Do not click on any links or download any attachments in the suspicious email",
+            "Do not reply to the sender or provide any personal information",
+            "If you already clicked a link and entered credentials, immediately change your password for that service"
+        ],
+        "evidence_required": [
+            "The original phishing email (do not delete it)",
+            "If possible, extract the email headers to identify the true sender",
+            "Screenshots of the fake login page (if you clicked the link)"
+        ],
+        "reporting_steps": [
+            "Mark the email as 'Phishing' or 'Spam' using your email provider's built-in reporting tool",
+            "Forward the phishing attempt to the anti-phishing working group or the impersonated organization's fraud department",
+            "Report to the national cyber crime portal if you lost data or money"
+        ],
+        "prevention_tips": [
+            "Always verify the sender's actual email address, not just the display name",
+            "Hover over links to see the actual destination URL before clicking",
+            "Enable 2FA on all important accounts"
+        ],
+        "keywords": [
+            "fake email",
+            "phishing",
+            "suspicious link",
+            "reset password email",
+            "impersonation"
+        ]
+    },
+    {
+        "issue_id": "SCA001",
+        "issue_type": "Investment Scam",
+        "subcategory": "Crypto / Trading Fraud",
+        "severity_level": "High",
+        "platform": "Telegram / WhatsApp",
+        "region": "Global",
+        "immediate_actions": [
+            "Stop all communications and do not transfer any more money to the scammers",
+            "Do not pay 'withdrawal fees' or 'taxes' that they demand to release your supposed profits",
+            "Secure any legitimate cryptocurrency wallets by transferring funds to a new, secure wallet if possible"
+        ],
+        "evidence_required": [
+            "Screenshots of chat histories (Telegram, WhatsApp) where the investment was pitched",
+            "Transaction IDs (TxID) on the blockchain for any cryptocurrency sent",
+            "URLs of the fraudulent trading websites or apps"
+        ],
+        "reporting_steps": [
+            "File a complaint with the national cyber crime reporting portal with all crypto transaction details",
+            "Report the fraudulent exchange or wallet addresses to blockchain analysis firms or the platform where the scam originated from",
+            "Contact your local law enforcement agency specializing in financial crimes"
+        ],
+        "prevention_tips": [
+            "Be extremely wary of 'guaranteed' high returns with zero risk",
+            "Do not trust investment advice from random individuals contacting you on social media or messaging apps",
+            "Verify the credentials and regulatory licenses of any trading platform before investing"
+        ],
+        "keywords": [
+            "crypto scam",
+            "bitcoin stolen",
+            "fake trading platform",
+            "investment fraud",
+            "can't withdraw money",
+            "telegram group scam"
+        ]
+    },
+    {
+        "issue_id": "ACC002",
+        "issue_type": "Fake Profile / Impersonation",
+        "subcategory": "Facebook / Instagram",
+        "severity_level": "Medium",
+        "platform": "Social Media",
+        "region": "Global",
+        "immediate_actions": [
+            "Post on your real account to warn friends/family not to accept friend requests or send money to the fake account",
+            "Do not confront the fake account directly",
+            "Ask friends to mass-report the fake profile for impersonation"
+        ],
+        "evidence_required": [
+            "Link (URL) to the fake profile",
+            "Screenshots of the fake profile's page showing your photos and details",
+            "Screenshots of any malicious messages sent by the fake account to your contacts"
+        ],
+        "reporting_steps": [
+            "Use the platform's specific reporting tool for impersonation (e.g., 'Report -> Report Account -> It's pretending to be someone I know')",
+            "If the account is scamming people for money or posting defamatory content, report it to the cyber crime police",
+            "If it's a serious threat or involves identity theft offline, contact local authorities"
+        ],
+        "prevention_tips": [
+            "Regularly review your privacy settings and restrict profile visibility to 'Friends Only'",
+            "Watermark your personal photos if you are a public figure or are concerned about theft",
+            "Regularly search for your own name/images to catch fake profiles early"
+        ],
+        "keywords": [
+            "fake profile",
+            "impersonation",
+            "someone pretending to be me",
+            "stolen photos",
+            "catfishing"
         ]
     }
 ]

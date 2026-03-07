@@ -9,5 +9,5 @@ class Query(BaseModel):
 
 @router.post("/chat")
 def chat(query: Query):
-    answer = generate_response(query.question)
-    return {"response": answer}
+    result = generate_response(query.question)
+    return result

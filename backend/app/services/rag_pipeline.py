@@ -1,5 +1,6 @@
 from app.services.embeddings import EmbeddingService
 from app.services.llm_provider import generate_completion
+from app.utils.logger import log_query
 
 embedding_service = EmbeddingService()
 embedding_service.load_data()
@@ -14,12 +15,23 @@ def generate_response(query: str):
     best_match = sop_candidates[0]
     confidence_score = best_match["distance"]
 
-    CONFIDENCE_THRESHOLD = 0.75  # You can tune this
+    CONFIDENCE_THRESHOLD = 1.2  # You can tune this
+
+    clarification = False
 
     if confidence_score > CONFIDENCE_THRESHOLD:
-        return "⚠️ I'm not fully confident about the issue. Could you please provide more details about the cyber incident?"
+        clarification = True
+        log_query(query, None, confidence_score, True)
+        return {
+            "answer": "⚠️ I'm not fully confident about the issue. Could you please provide more details?",
+            "issue_type": "Clarification Required",
+            "severity_level": "Unknown",
+            "confidence": round(confidence_score, 2)
+        }
     
     sop = best_match["sop"]
+
+    log_query(query, sop["issue_id"], confidence_score, False)
 
     combined_context = f"""
 Issue Type: {sop['issue_type']}
@@ -69,4 +81,12 @@ Use ONLY the following retrieved SOP data:
 User Query: {query}
 """
 
-    return generate_completion(prompt)
+    answer = generate_completion(prompt)
+    
+    return {
+        "answer": answer,
+        "issue_type": sop.get("issue_type", "Unknown"),
+        "severity_level": sop.get("severity_level", "Unknown"),
+        "confidence": round(confidence_score, 2)
+    }
+
