@@ -20,6 +20,8 @@ function App() {
   const [selectedFile, setSelectedFile] = useState(null);
   const [filePreview, setFilePreview] = useState(null);
 
+  const [selectedLanguage, setSelectedLanguage] = useState("en");
+
   // Cases State
   const [cases, setCases] = useState([]);
 
@@ -108,6 +110,7 @@ function App() {
 
     const formData = new FormData();
     formData.append("file", selectedFile);
+    formData.append("language", selectedLanguage);
 
     removeFile();
 
@@ -179,7 +182,10 @@ ${data.suggested_next_steps}
       const response = await fetch("http://127.0.0.1:8000/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ question: userMessage.text })
+        body: JSON.stringify({
+          question: userMessage.text,
+          language: selectedLanguage
+        })
       });
 
       const data = await response.json();
@@ -311,6 +317,18 @@ ${data.suggested_next_steps}
               >
                 <Paperclip size={20} />
               </button>
+
+              <select
+                className="language-selector"
+                value={selectedLanguage}
+                onChange={(e) => setSelectedLanguage(e.target.value)}
+                disabled={isLoading}
+              >
+                <option value="en">English</option>
+                <option value="hi">हिंदी (Hindi)</option>
+                <option value="ta">தமிழ் (Tamil)</option>
+                <option value="te">తెలుగు (Telugu)</option>
+              </select>
 
               <input
                 type="text"

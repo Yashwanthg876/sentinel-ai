@@ -9,3 +9,4 @@ ollama
 pytesseract
 python-multipart
 pillow
+deep-translator
