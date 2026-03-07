@@ -21,6 +21,7 @@ function App() {
   const [filePreview, setFilePreview] = useState(null);
 
   const [selectedLanguage, setSelectedLanguage] = useState("en");
+  const [selectedAgent, setSelectedAgent] = useState("general");
 
   // Cases State
   const [cases, setCases] = useState([]);
@@ -184,7 +185,8 @@ ${data.suggested_next_steps}
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           question: userMessage.text,
-          language: selectedLanguage
+          language: selectedLanguage,
+          agent: selectedAgent
         })
       });
 
@@ -238,6 +240,26 @@ ${data.suggested_next_steps}
       <div className="content-area">
         {activeTab === "chat" ? (
           <div className="chat-container">
+            <div className="agent-selector">
+              <button
+                className={`agent-btn ${selectedAgent === 'general' ? 'active' : ''}`}
+                onClick={() => setSelectedAgent('general')}
+              >
+                🤖 General Assistant
+              </button>
+              <button
+                className={`agent-btn ${selectedAgent === 'legal' ? 'active' : ''}`}
+                onClick={() => setSelectedAgent('legal')}
+              >
+                ⚖️ Legal Advisor
+              </button>
+              <button
+                className={`agent-btn ${selectedAgent === 'reporting' ? 'active' : ''}`}
+                onClick={() => setSelectedAgent('reporting')}
+              >
+                📝 Platform Reporting
+              </button>
+            </div>
             <div className="messages-list">
               {messages.map((msg, index) => (
                 <div key={index} className={`message-wrapper ${msg.sender}`}>

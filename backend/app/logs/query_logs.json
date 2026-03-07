@@ -103,5 +103,26 @@
     "sop_id": "ACC001",
     "confidence": 0.64246666431427,
     "clarification_triggered": false
+  },
+  {
+    "timestamp": "2026-03-07T08:45:10.957185",
+    "query": "my instagram  is hacked",
+    "sop_id": "ACC001",
+    "confidence": 0.6500805616378784,
+    "clarification_triggered": false
+  },
+  {
+    "timestamp": "2026-03-07T08:49:49.905789",
+    "query": "my instagram has been hacked",
+    "sop_id": "ACC001",
+    "confidence": 0.634689450263977,
+    "clarification_triggered": false
+  },
+  {
+    "timestamp": "2026-03-07T08:54:20.067755",
+    "query": "I lost money in a UPI scam. What should I do?",
+    "sop_id": "FIN001",
+    "confidence": 0.7781876921653748,
+    "clarification_triggered": false
   }
 ]

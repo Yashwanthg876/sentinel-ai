@@ -1,12 +1,13 @@
 from app.services.embeddings import EmbeddingService
 from app.services.llm_provider import generate_completion
+from app.services.agents import get_agent
 from app.utils.logger import log_query
 
 embedding_service = EmbeddingService()
 embedding_service.load_data()
 embedding_service.create_embeddings()
 
-def generate_response(query: str):
+def generate_response(query: str, agent_type: str = "general"):
     sop_candidates = embedding_service.search(query)
 
     # Sort by lowest distance
@@ -39,6 +40,7 @@ Immediate Actions: {sop['immediate_actions']}
 Evidence Required: {sop['evidence_required']}
 Reporting Steps: {sop['reporting_steps']}
 Prevention Tips: {sop['prevention_tips']}
+Legal References: {sop.get('legal_reference', 'No specific laws listed')}
 """
 
     prompt = f"""
@@ -81,7 +83,11 @@ Use ONLY the following retrieved SOP data:
 User Query: {query}
 """
 
-    answer = generate_completion(prompt)
+    agent = get_agent(agent_type)
+    if agent:
+         answer = agent.execute(query, combined_context)
+    else:
+         answer = generate_completion(prompt)
     
     return {
         "answer": answer,
