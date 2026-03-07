@@ -7,7 +7,7 @@ embedding_service = EmbeddingService()
 embedding_service.load_data()
 embedding_service.create_embeddings()
 
-def generate_response(query: str, agent_type: str = "general"):
+def generate_response(query: str, agent_type: str = "general", history: list = None, response_length: str = "detailed"):
     sop_candidates = embedding_service.search(query)
 
     # Sort by lowest distance
@@ -43,8 +43,23 @@ Prevention Tips: {sop['prevention_tips']}
 Legal References: {sop.get('legal_reference', 'No specific laws listed')}
 """
 
+    history_context = ""
+    if history:
+        # Keep last 6 messages (3 turns)
+        recent_history = history[-6:]
+        history_str = "\n".join([f"{msg['sender'].capitalize()}: {msg['text']}" for msg in recent_history])
+        history_context = f"Conversation History:\n{history_str}\n"
+
+    length_instruction = ""
+    if response_length == "brief":
+        length_instruction = "IMPORTANT: Keep the response extremely brief, summarizing the core steps only. Bullet points preferred."
+    else:
+        length_instruction = "IMPORTANT: Provide a detailed and comprehensive explanation for each step."
+
     prompt = f"""
 You are SentinelAI, an AI-powered Cyber Incident Assistance System.
+
+{length_instruction}
 
 You MUST respond ONLY in the structured format below.
 Do NOT add extra sections.
@@ -80,12 +95,14 @@ Use ONLY the following retrieved SOP data:
 
 {combined_context}
 
+{history_context}
+
 User Query: {query}
 """
 
     agent = get_agent(agent_type)
     if agent:
-         answer = agent.execute(query, combined_context)
+         answer = agent.execute(query, combined_context, history_context, length_instruction)
     else:
          answer = generate_completion(prompt)
     

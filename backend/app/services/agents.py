@@ -1,10 +1,12 @@
 from app.services.llm_provider import generate_completion
 
 class LegalAdvisorAgent:
-    def execute(self, query: str, context: str) -> str:
+    def execute(self, query: str, context: str, history_context: str = "", length_instruction: str = "") -> str:
         prompt = f"""
 You are SentinelAI's specialized Legal Advisor Agent. 
 You are an expert in Indian Cyber Laws (such as IT Act 2000, BNS, IPC).
+
+{length_instruction}
 
 Your objective is to read the retrieved SOP context and user query, and provide ONLY the legal references, rights of the victim, and formal police complaint advice. Do not provide general IT support steps.
 
@@ -21,14 +23,19 @@ This is automated legal guidance, not professional legal counsel.
 Context:
 {context}
 
+{history_context}
+
 User Query: {query}
 """
         return generate_completion(prompt)
 
 class ReportingAssistantAgent:
-    def execute(self, query: str, context: str) -> str:
+    def execute(self, query: str, context: str, history_context: str = "", length_instruction: str = "") -> str:
         prompt = f"""
 You are SentinelAI's Platform Reporting Assistant.
+
+{length_instruction}
+
 Your objective is to provide EXACT, step-by-step instructions on how to report the issue to the relevant digital platform (e.g., social media network, bank) or national cybercrime portal. Do not provide legal or technical recovery advice. Focus entirely on the reporting workflow.
 
 Use this format:
@@ -42,6 +49,8 @@ Use this format:
 
 Context:
 {context}
+
+{history_context}
 
 User Query: {query}
 """

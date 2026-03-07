@@ -145,5 +145,26 @@
     "sop_id": "ACC001",
     "confidence": 0.6016879677772522,
     "clarification_triggered": false
+  },
+  {
+    "timestamp": "2026-03-07T12:44:31.553706",
+    "query": "my instagram is hacked",
+    "sop_id": "ACC001",
+    "confidence": 0.6500805616378784,
+    "clarification_triggered": false
+  },
+  {
+    "timestamp": "2026-03-07T12:46:59.627501",
+    "query": "where should i report this problem",
+    "sop_id": null,
+    "confidence": 1.3058784008026123,
+    "clarification_triggered": true
+  },
+  {
+    "timestamp": "2026-03-07T12:47:32.156273",
+    "query": "my instagram is hacked where should i report the problem",
+    "sop_id": "ACC001",
+    "confidence": 0.7183264493942261,
+    "clarification_triggered": false
   }
 ]

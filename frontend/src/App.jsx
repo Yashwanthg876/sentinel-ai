@@ -23,6 +23,7 @@ function App() {
   const [selectedLanguage, setSelectedLanguage] = useState("en");
   const [selectedAgent, setSelectedAgent] = useState("general");
   const [isListening, setIsListening] = useState(false);
+  const [responseLength, setResponseLength] = useState("detailed");
 
   // Cases State
   const [cases, setCases] = useState([]);
@@ -216,13 +217,20 @@ ${data.suggested_next_steps}
     setIsLoading(true);
 
     try {
+      // Prepare history (excluding the message just added or keeping things simple)
+      const historyToSend = messages
+        .filter(msg => msg.text && msg.sender)
+        .map(msg => ({ sender: msg.sender, text: msg.text }));
+
       const response = await fetch("http://127.0.0.1:8000/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           question: userMessage.text,
           language: selectedLanguage,
-          agent: selectedAgent
+          agent: selectedAgent,
+          history: historyToSend,
+          response_length: responseLength
         })
       });
 
@@ -386,6 +394,17 @@ ${data.suggested_next_steps}
                 <option value="hi">हिंदी (Hindi)</option>
                 <option value="ta">தமிழ் (Tamil)</option>
                 <option value="te">తెలుగు (Telugu)</option>
+              </select>
+
+              <select
+                className="language-selector"
+                value={responseLength}
+                onChange={(e) => setResponseLength(e.target.value)}
+                disabled={isLoading}
+                title="Response Length"
+              >
+                <option value="detailed">Detailed</option>
+                <option value="brief">Brief</option>
               </select>
 
               <input
