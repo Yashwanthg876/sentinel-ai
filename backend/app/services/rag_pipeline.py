@@ -61,46 +61,10 @@ Legal References: {sop.get('legal_reference', 'No specific laws listed')}
         length_instruction = "IMPORTANT: Keep the response extremely brief, summarizing the core steps only. Use short bullet points to maximize your generation speed."
     else:
         length_instruction = "IMPORTANT: Provide a detailed explanation for each step."
-
-    prompt = f"""
-You are SentinelAI, an AI-powered Cyber Incident Assistance System.
-
-Analyze the user's issue based on their query and the conversation history.
-Perform ISSUE CLASSIFICATION to determine the exact Cyber Crime or IT pattern.
-
-{length_instruction}
-
-You MUST respond ONLY in the structured format below. Keep generation fast and concise. Do NOT add preamble.
-
-ISSUE_CLASSIFICATION: (Classify the exact cyber issue in 1-3 words, e.g., 'Investment Scam', 'Account Hack', 'Query')
-SEVERITY_LEVEL: (Low, Medium, High, or Critical)
-RESPONSE:
-🔎 ISSUE IDENTIFIED:
-(Briefly summarize)
-🚨 IMMEDIATE ACTION:
-- Step 1
-📂 EVIDENCE TO COLLECT:
-- Item 1
-📝 REPORTING PROCESS:
-- Step 1
-🛡️ PREVENTION TIPS:
-- Tip 1
-
-📌 NOTE: Guidance only, not legal advice.
-
-Use ONLY the following retrieved SOP data/context:
-{combined_context}
-
-{history_context}
-
-User Query: {query}
-"""
-
+        
+    # Fully delegate generation to the loaded Workflow Agent
     agent = get_agent(agent_type)
-    if agent:
-         answer_raw = agent.execute(query, combined_context, history_context, length_instruction)
-    else:
-         answer_raw = generate_completion(prompt)
+    answer_raw = agent.execute(query, combined_context, history_context, length_instruction)
     
     # Parse dynamic classification out of the LLM response
     import re
