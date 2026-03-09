@@ -180,5 +180,26 @@
     "sop_id": null,
     "confidence": 1.3991010189056396,
     "clarification_triggered": true
+  },
+  {
+    "timestamp": "2026-03-07T15:09:39.142384",
+    "query": "my instagram is hacked",
+    "sop_id": "ACC001",
+    "confidence": 0.6500805616378784,
+    "clarification_triggered": false
+  },
+  {
+    "timestamp": "2026-03-07T15:11:01.285139",
+    "query": "where should i report this",
+    "sop_id": "CYB001",
+    "confidence": 1.197571039199829,
+    "clarification_triggered": false
+  },
+  {
+    "timestamp": "2026-03-07T18:50:19.952910",
+    "query": "my instagram is hacked",
+    "sop_id": "ACC001",
+    "confidence": 0.6500805616378784,
+    "clarification_triggered": false
   }
 ]

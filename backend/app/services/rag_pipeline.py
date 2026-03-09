@@ -8,7 +8,15 @@ embedding_service.load_data()
 embedding_service.create_embeddings()
 
 def generate_response(query: str, agent_type: str = "general", history: list = None, response_length: str = "detailed"):
-    sop_candidates = embedding_service.search(query)
+    # Enhance Context Memory: Append last user message to query for better semantic retrieval
+    search_query = query
+    if history:
+        user_msgs = [m["text"] for m in history if m["sender"] == "user"]
+        if user_msgs:
+            # combine last user message with current query for vector search
+            search_query = f"{user_msgs[-1]} {query}"
+
+    sop_candidates = embedding_service.search(search_query)
 
     # Sort by lowest distance
     sop_candidates.sort(key=lambda x: x["distance"])
@@ -23,49 +31,30 @@ def generate_response(query: str, agent_type: str = "general", history: list = N
         history_str = "\n".join([f"{msg['sender'].capitalize()}: {msg['text']}" for msg in recent_history])
         history_context = f"Conversation History:\n{history_str}\n"
 
-    CONFIDENCE_THRESHOLD = 1.2  # You can tune this
+    CONFIDENCE_THRESHOLD = 1.3  # Loosened slightly to accommodate memory-based longer queries
 
-    # Follow-up Conversation Check
-    if confidence_score > CONFIDENCE_THRESHOLD:
-        if history and len(history) > 0:
-            log_query(query, "follow-up", confidence_score, False)
-            follow_up_prompt = f"""
-You are SentinelAI, a helpful Cyber Incident Assistance System.
-
-The user is asking a follow-up question. Answer it directly and concisely based on the conversation history. Keep your answer brief to ensure a fast response time.
-
-{history_context}
-
-User Follow-up Query: {query}
-"""
-            answer = generate_completion(follow_up_prompt)
-            return {
-                "answer": answer,
-                "issue_type": "Follow-up",
-                "severity_level": "Unknown",
-                "confidence": round(confidence_score, 2)
-            }
-        else:
-            log_query(query, None, confidence_score, True)
-            return {
-                "answer": "⚠️ I'm not fully confident about the issue. Could you please provide more details?",
-                "issue_type": "Clarification Required",
-                "severity_level": "Unknown",
-                "confidence": round(confidence_score, 2)
-            }
+    # If confidence is extremely poor, handle as clarification
+    if confidence_score > CONFIDENCE_THRESHOLD and not history:
+         log_query(query, None, confidence_score, True)
+         return {
+             "answer": "⚠️ I'm not fully confident about the issue. Could you please provide more details?",
+             "issue_type": "Clarification Required",
+             "severity_level": "Unknown",
+             "confidence": round(confidence_score, 2)
+         }
     
-    sop = best_match["sop"]
+    sop = best_match["sop"] if confidence_score <= CONFIDENCE_THRESHOLD else {"issue_id": "Unknown", "issue_type": "General Support", "immediate_actions": [], "evidence_required": [], "reporting_steps": [], "prevention_tips": []}
 
     log_query(query, sop["issue_id"], confidence_score, False)
 
     combined_context = f"""
-Issue Type: {sop['issue_type']}
+Matched Database SOP Type: {sop['issue_type']}
 Immediate Actions: {sop['immediate_actions']}
 Evidence Required: {sop['evidence_required']}
 Reporting Steps: {sop['reporting_steps']}
 Prevention Tips: {sop['prevention_tips']}
 Legal References: {sop.get('legal_reference', 'No specific laws listed')}
-"""
+""" if confidence_score <= CONFIDENCE_THRESHOLD else "No exact SOP match. Rely on general cybersecurity best practices."
 
     length_instruction = ""
     if response_length == "brief":
@@ -76,30 +65,30 @@ Legal References: {sop.get('legal_reference', 'No specific laws listed')}
     prompt = f"""
 You are SentinelAI, an AI-powered Cyber Incident Assistance System.
 
+Analyze the user's issue based on their query and the conversation history.
+Perform ISSUE CLASSIFICATION to determine the exact Cyber Crime or IT pattern.
+
 {length_instruction}
 
-You MUST respond ONLY in the structured format below. Keep generation fast and concise.
+You MUST respond ONLY in the structured format below. Keep generation fast and concise. Do NOT add preamble.
 
-STRUCTURED FORMAT:
-
+ISSUE_CLASSIFICATION: (Classify the exact cyber issue in 1-3 words, e.g., 'Investment Scam', 'Account Hack', 'Query')
+SEVERITY_LEVEL: (Low, Medium, High, or Critical)
+RESPONSE:
 🔎 ISSUE IDENTIFIED:
 (Briefly summarize)
-
 🚨 IMMEDIATE ACTION:
 - Step 1
-
 📂 EVIDENCE TO COLLECT:
 - Item 1
-
 📝 REPORTING PROCESS:
 - Step 1
-
 🛡️ PREVENTION TIPS:
 - Tip 1
 
 📌 NOTE: Guidance only, not legal advice.
 
-Use ONLY the following retrieved SOP data:
+Use ONLY the following retrieved SOP data/context:
 {combined_context}
 
 {history_context}
@@ -109,14 +98,36 @@ User Query: {query}
 
     agent = get_agent(agent_type)
     if agent:
-         answer = agent.execute(query, combined_context, history_context, length_instruction)
+         answer_raw = agent.execute(query, combined_context, history_context, length_instruction)
     else:
-         answer = generate_completion(prompt)
+         answer_raw = generate_completion(prompt)
     
+    # Parse dynamic classification out of the LLM response
+    import re
+    issue_type = sop.get("issue_type", "Unknown")
+    severity_level = sop.get("severity_level", "Unknown")
+    response_text = answer_raw
+
+    issue_match = re.search(r"ISSUE_CLASSIFICATION:\s*(.+)", answer_raw, re.IGNORECASE)
+    if issue_match:
+        issue_type = issue_match.group(1).strip()
+        
+    severity_match = re.search(r"SEVERITY_LEVEL:\s*(.+)", answer_raw, re.IGNORECASE)
+    if severity_match:
+        severity_level = severity_match.group(1).strip()
+        
+    response_match = re.search(r"RESPONSE:\s*(.*)", answer_raw, re.IGNORECASE | re.DOTALL)
+    if response_match:
+        response_text = response_match.group(1).strip()
+    else:
+        # Fallback if LLM misses RESPONSE: tag
+        response_text = re.sub(r"ISSUE_CLASSIFICATION:.*?\n", "", response_text, flags=re.IGNORECASE)
+        response_text = re.sub(r"SEVERITY_LEVEL:.*?\n", "", response_text, flags=re.IGNORECASE).strip()
+
     return {
-        "answer": answer,
-        "issue_type": sop.get("issue_type", "Unknown"),
-        "severity_level": sop.get("severity_level", "Unknown"),
+        "answer": response_text,
+        "issue_type": issue_type,
+        "severity_level": severity_level,
         "confidence": round(confidence_score, 2)
     }
 
