@@ -10,3 +10,7 @@ pytesseract
 python-multipart
 pillow
 deep-translator
+sqlalchemy
+python-jose[cryptography]
+passlib[bcrypt]
+google-auth

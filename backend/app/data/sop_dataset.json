@@ -46,6 +46,10 @@
         "subcategory": "Instagram",
         "severity_level": "High",
         "region": "Global",
+        "legal_reference": [
+            "IT Act 2000 - Section 66",
+            "IT Act 2000 - Section 43"
+        ],
         "immediate_actions": [
             "Check your registered email for any 'New Login' or 'Password Changed' alerts",
             "Use the 'Forgot Password' or account recovery feature on the Instagram app",
@@ -81,6 +85,11 @@
         "severity_level": "Medium",
         "platform": "Twitter / X",
         "region": "Global",
+        "legal_reference": [
+            "IT Act 2000 - Section 66A",
+            "IPC Section 507",
+            "IPC Section 354D (Stalking)"
+        ],
         "immediate_actions": [
             "Do not reply or engage with the bully/attacker",
             "Block and mute the abusive accounts immediately",
@@ -117,6 +126,11 @@
         "severity_level": "High",
         "platform": "Banking",
         "region": "Global",
+        "legal_reference": [
+            "IT Act 2000 - Section 66C",
+            "IPC Section 420",
+            "RBI Zero Liability Guidelines"
+        ],
         "immediate_actions": [
             "Call your bank's customer service to freeze the credit card instantly",
             "Review your recent statements for any other unauthorized transactions",
@@ -152,6 +166,11 @@
         "severity_level": "Critical",
         "platform": "Windows/Mac",
         "region": "Global",
+        "legal_reference": [
+            "IT Act 2000 - Section 66F",
+            "IT Act 2000 - Section 43",
+            "CERT-In Incident Reporting"
+        ],
         "immediate_actions": [
             "Disconnect the infected device from the internet (Wi-Fi and Ethernet) immediately to prevent spreading",
             "Do NOT pay the ransom, as there is no guarantee you will get your data back",
@@ -188,6 +207,11 @@
         "severity_level": "Medium",
         "platform": "Email",
         "region": "Global",
+        "legal_reference": [
+            "IT Act 2000 - Section 66D",
+            "IPC Section 419",
+            "IPC Section 420"
+        ],
         "immediate_actions": [
             "Do not click on any links or download any attachments in the suspicious email",
             "Do not reply to the sender or provide any personal information",
@@ -223,6 +247,11 @@
         "severity_level": "High",
         "platform": "Telegram / WhatsApp",
         "region": "Global",
+        "legal_reference": [
+            "IT Act 2000 - Section 66D",
+            "IPC Section 420",
+            "SEBI Regulations"
+        ],
         "immediate_actions": [
             "Stop all communications and do not transfer any more money to the scammers",
             "Do not pay 'withdrawal fees' or 'taxes' that they demand to release your supposed profits",
@@ -259,6 +288,11 @@
         "severity_level": "Medium",
         "platform": "Social Media",
         "region": "Global",
+        "legal_reference": [
+            "IT Act 2000 - Section 66D",
+            "IPC Section 419",
+            "IPC Section 500"
+        ],
         "immediate_actions": [
             "Post on your real account to warn friends/family not to accept friend requests or send money to the fake account",
             "Do not confront the fake account directly",
@@ -285,6 +319,362 @@
             "someone pretending to be me",
             "stolen photos",
             "catfishing"
+        ]
+    },
+    {
+        "issue_id": "WHA001",
+        "issue_type": "WhatsApp Scam",
+        "subcategory": "OTP / Account Takeover",
+        "severity_level": "High",
+        "platform": "WhatsApp",
+        "region": "India",
+        "legal_reference": [
+            "IT Act 2000 - Section 66C",
+            "IT Act 2000 - Section 66D",
+            "IPC Section 419"
+        ],
+        "immediate_actions": [
+            "Immediately log out all linked devices via WhatsApp Settings > Linked Devices",
+            "Re-register your WhatsApp by requesting a new OTP on your phone number",
+            "Enable Two-Step Verification in WhatsApp Settings > Account > Two-Step Verification",
+            "Warn all your contacts not to send money or respond to any messages from your account"
+        ],
+        "evidence_required": [
+            "Screenshots of suspicious messages or calls requesting OTP",
+            "The phone number that called you asking for OTP",
+            "Date and time of the OTP request"
+        ],
+        "reporting_steps": [
+            "Report the incident directly to WhatsApp by emailing support@whatsapp.com",
+            "File a complaint on cybercrime.gov.in under 'Online and Social Media Crimes'",
+            "Lodge an FIR at the nearest police station or cyber crime cell"
+        ],
+        "prevention_tips": [
+            "Never share WhatsApp OTP with anyone, even if they claim to be WhatsApp support",
+            "Enable Two-Step Verification with a PIN to add an extra layer of security",
+            "Be suspicious of calls from unknown numbers asking for verification codes"
+        ],
+        "keywords": [
+            "whatsapp hacked",
+            "whatsapp otp",
+            "whatsapp taken over",
+            "whatsapp scam",
+            "fake whatsapp message",
+            "message from my number"
+        ]
+    },
+    {
+        "issue_id": "IDT001",
+        "issue_type": "Identity Theft",
+        "subcategory": "Aadhaar / PAN / Document Fraud",
+        "severity_level": "Critical",
+        "platform": "Government / Banking",
+        "region": "India",
+        "legal_reference": [
+            "IT Act 2000 - Section 66C",
+            "IPC Section 419",
+            "IPC Section 420",
+            "Aadhaar Act 2016"
+        ],
+        "immediate_actions": [
+            "Lock your Aadhaar biometric immediately at myaadhaar.uidai.gov.in or call 1947",
+            "File a complaint with UIDAI if Aadhaar is misused",
+            "Inform all your banks about the potential identity theft and request account monitoring",
+            "Place a fraud alert with CIBIL or credit bureaus to prevent fake loan applications"
+        ],
+        "evidence_required": [
+            "Evidence of misuse (fake loan documents, unauthorized account openings, etc.)",
+            "Your original ID documents for verification",
+            "Police complaint copy for credit bureau alerts"
+        ],
+        "reporting_steps": [
+            "File a complaint at cybercrime.gov.in under 'Other Cyber Crime'",
+            "Report to UIDAI if Aadhaar is misused (helpline: 1947)",
+            "Lodge an FIR at the local police station — this is mandatory to notify banks and credit bureaus",
+            "Notify the Income Tax department if PAN card has been misused"
+        ],
+        "prevention_tips": [
+            "Never share photocopies of Aadhaar/PAN without a clear reason and destination",
+            "Regularly check your CIBIL score for unexpected loans or credit inquiries",
+            "Use Virtual ID (VID) instead of your actual Aadhaar number wherever possible"
+        ],
+        "keywords": [
+            "identity theft",
+            "aadhaar fraud",
+            "pan card misuse",
+            "fake loan",
+            "someone used my documents",
+            "identity stolen",
+            "documents stolen"
+        ]
+    },
+    {
+        "issue_id": "SCA002",
+        "issue_type": "Online Shopping Scam",
+        "subcategory": "Fake Seller / Non-Delivery",
+        "severity_level": "Medium",
+        "platform": "E-Commerce / Social Media",
+        "region": "India",
+        "legal_reference": [
+            "Consumer Protection Act 2019",
+            "IT Act 2000 - Section 66D",
+            "IPC Section 420"
+        ],
+        "immediate_actions": [
+            "Stop all further payments to the seller",
+            "Take screenshots of the product listing, order confirmation, and all chat messages",
+            "File a dispute with your payment provider (UPI, credit card, Paytm) for a refund"
+        ],
+        "evidence_required": [
+            "Order confirmation emails or messages",
+            "Screenshots of the product listing and seller's contact details",
+            "Payment receipts and transaction IDs",
+            "Communication history with the seller"
+        ],
+        "reporting_steps": [
+            "Report the fraudulent seller to the e-commerce platform (Amazon, Flipkart) or social media platform",
+            "File a consumer complaint at consumerhelpline.gov.in",
+            "File a cybercrime complaint at cybercrime.gov.in if you transferred money",
+            "Contact your bank to dispute the transaction"
+        ],
+        "prevention_tips": [
+            "Only purchase from verified sellers with positive reviews and return policies",
+            "Use buyer protection payment methods (credit cards) for large purchases",
+            "Be suspicious of deals that are significantly below market price",
+            "Verify the seller's physical address before paying"
+        ],
+        "keywords": [
+            "fake online seller",
+            "product not delivered",
+            "online shopping fraud",
+            "fake website",
+            "paid but no delivery",
+            "fraudulent seller"
+        ]
+    },
+    {
+        "issue_id": "EXT001",
+        "issue_type": "Online Extortion",
+        "subcategory": "Sextortion / Blackmail",
+        "severity_level": "Critical",
+        "platform": "Social Media / Messaging Apps",
+        "region": "Global",
+        "legal_reference": [
+            "IT Act 2000 - Section 67",
+            "IT Act 2000 - Section 67A",
+            "IPC Section 503",
+            "IPC Section 506",
+            "POCSO Act (if minor involved)"
+        ],
+        "immediate_actions": [
+            "Do NOT pay the extortionist under any circumstances — it will encourage more demands",
+            "Stop all communication with the extortionist immediately",
+            "Do not delete the evidence — preserve all screenshots, message logs, and contact details",
+            "Report and block the account on the platform immediately after saving evidence"
+        ],
+        "evidence_required": [
+            "Screenshots of all threatening messages",
+            "The extortionist's social media profile URLs or phone numbers",
+            "Proof of any payments already made (if applicable)"
+        ],
+        "reporting_steps": [
+            "File an urgent complaint at cybercrime.gov.in or call the helpline 1930",
+            "Lodge an FIR at the nearest police station — share all digital evidence",
+            "Report the account on the respective platform (Facebook, Instagram, Telegram) for blackmail/extortion",
+            "Seek support from a mental health professional if needed"
+        ],
+        "prevention_tips": [
+            "Be cautious about sharing intimate images or videos online, even with trusted contacts",
+            "Review your privacy settings on all social media platforms regularly",
+            "Use strong, unique passwords and enable 2FA to prevent account compromise"
+        ],
+        "keywords": [
+            "blackmail",
+            "sextortion",
+            "threatening to post photos",
+            "demanding money",
+            "extortion",
+            "threatening messages",
+            "paying to delete photos"
+        ]
+    },
+    {
+        "issue_id": "ACC003",
+        "issue_type": "Facebook Account Hacked",
+        "subcategory": "Facebook Impersonation",
+        "severity_level": "High",
+        "platform": "Facebook",
+        "region": "Global",
+        "legal_reference": [
+            "IT Act 2000 - Section 66",
+            "IT Act 2000 - Section 66C",
+            "IPC Section 419"
+        ],
+        "immediate_actions": [
+            "Go to facebook.com/hacked and use the self-recovery tool",
+            "If locked out, use 'Find your account' using your email, phone, or friend's help",
+            "Immediately revoke access to any unknown third-party apps under Settings > Apps and Websites",
+            "Alert your friends and family not to respond to any unusual messages from your account"
+        ],
+        "evidence_required": [
+            "Your Facebook profile URL",
+            "Email associated with your Facebook account",
+            "Screenshots of suspicious activity or messages sent from your account"
+        ],
+        "reporting_steps": [
+            "Submit an appeal via the Facebook Help Center (facebook.com/help)",
+            "Use the Facebook 'Hacked Account' recovery form",
+            "If financial fraud occurred, file a complaint on cybercrime.gov.in",
+            "Report the hacked account's activity to Facebook Trust and Safety team"
+        ],
+        "prevention_tips": [
+            "Enable Facebook's Two-Factor Authentication under Security and Login settings",
+            "Review active sessions and log out from all unrecognized locations",
+            "Do not click on suspicious links sent via Facebook Messenger",
+            "Use a unique, strong password for Facebook that you do not use elsewhere"
+        ],
+        "keywords": [
+            "facebook hacked",
+            "facebook account taken over",
+            "facebook password changed",
+            "locked out of facebook",
+            "facebook impersonation",
+            "facebook sending spam"
+        ]
+    },
+    {
+        "issue_id": "JOB001",
+        "issue_type": "Job Scam",
+        "subcategory": "Fake Job Offer / Work From Home Fraud",
+        "severity_level": "High",
+        "platform": "LinkedIn / WhatsApp / Job Portals",
+        "region": "India",
+        "legal_reference": [
+            "IT Act 2000 - Section 66D",
+            "IPC Section 420",
+            "IPC Section 406 (Criminal Breach of Trust)"
+        ],
+        "immediate_actions": [
+            "Stop all payments to the fake recruiter or company immediately",
+            "Do not share your bank account, Aadhaar, or PAN details with unverified recruiters",
+            "Block the fraudster and do not delete any evidence"
+        ],
+        "evidence_required": [
+            "Job offer letter or email from the fraudulent company",
+            "All payment receipts sent to the scammer",
+            "Screenshots of the job listing and recruiter's contact details",
+            "Chat history with the recruiter"
+        ],
+        "reporting_steps": [
+            "File a complaint at cybercrime.gov.in under 'Financial Fraud'",
+            "Report the fraudulent job listing on LinkedIn or the job portal",
+            "Lodge an FIR at your local police station",
+            "Warn other job seekers by reporting the company on job review sites"
+        ],
+        "prevention_tips": [
+            "Never pay for a job — legitimate employers do not ask for money",
+            "Verify the company's existence on MCA21 (Ministry of Corporate Affairs portal)",
+            "Use official company websites and verified email domains for communication",
+            "Be cautious of jobs offering very high salaries for minimal qualification"
+        ],
+        "keywords": [
+            "job scam",
+            "fake job offer",
+            "work from home fraud",
+            "paid for job",
+            "recruitment fraud",
+            "fake company",
+            "job registration fee"
+        ]
+    },
+    {
+        "issue_id": "STA001",
+        "issue_type": "Online Stalking",
+        "subcategory": "Cyberstalking / Harassment",
+        "severity_level": "High",
+        "platform": "Social Media / Messaging Apps",
+        "region": "Global",
+        "legal_reference": [
+            "IT Act 2000 - Section 66E",
+            "IPC Section 354D (Stalking)",
+            "IPC Section 509 (Outraging Modesty)"
+        ],
+        "immediate_actions": [
+            "Do not respond to the stalker's messages or calls",
+            "Block the stalker on all platforms immediately",
+            "Enable location privacy on all social media accounts and disable location sharing",
+            "Inform a trusted person about the situation and keep records of all incidents"
+        ],
+        "evidence_required": [
+            "Screenshots of all harassing messages, comments, or emails",
+            "Dates and times of incidents",
+            "The stalker's social media profile and contact details",
+            "Any physical evidence if stalking occurs offline too"
+        ],
+        "reporting_steps": [
+            "File a complaint at cybercrime.gov.in under 'Cyber Stalking/Bullying Against Women/Children'",
+            "Lodge an FIR at the local Women's Police Station or Cyber Crime Cell",
+            "Contact the National Commission for Women if online harassment is gender-based",
+            "Report all abusive accounts to respective social media platforms"
+        ],
+        "prevention_tips": [
+            "Audit your social media privacy settings and restrict who can see your location, posts, and friend list",
+            "Use a unique username that doesn't reveal your real identity on public platforms",
+            "Enable 'Two-Factor Authentication' to prevent your accounts from being accessible to the stalker"
+        ],
+        "keywords": [
+            "cyberstalking",
+            "online stalking",
+            "being followed online",
+            "harassment",
+            "someone tracking me",
+            "repeated unwanted messages"
+        ]
+    },
+    {
+        "issue_id": "ROM001",
+        "issue_type": "Romance Scam",
+        "subcategory": "Dating App / Social Media Fraud",
+        "severity_level": "High",
+        "platform": "Dating Apps / Social Media",
+        "region": "Global",
+        "legal_reference": [
+            "IT Act 2000 - Section 66D",
+            "IPC Section 415 (Cheating)",
+            "IPC Section 420 (Fraud)"
+        ],
+        "immediate_actions": [
+            "Stop all financial transfers to the person immediately",
+            "Cease communication and report the profile on the dating app/social media platform",
+            "Do NOT send any more personal documents, photos, or money",
+            "Run a reverse image search on their profile photo to verify their identity"
+        ],
+        "evidence_required": [
+            "Screenshots of all conversations",
+            "Profile links, photos, and contact details of the scammer",
+            "All financial transaction records (bank transfers, gift cards, crypto sent)",
+            "Any fake identification documents they may have shared"
+        ],
+        "reporting_steps": [
+            "Report the profile to the dating app or social media platform for fraud",
+            "File a complaint at cybercrime.gov.in under 'Other Cyber Crime'",
+            "Report to your bank to dispute any recent transactions",
+            "Lodge an FIR with local police, bringing all digital evidence"
+        ],
+        "prevention_tips": [
+            "Be extremely cautious about developing emotional relationships with people you meet only online",
+            "Never send money to someone you have not met in person, regardless of their story",
+            "Always verify the person's identity via video call before trusting them",
+            "Use reverse image search to check if profile photos are stolen from the internet"
+        ],
+        "keywords": [
+            "romance scam",
+            "catfish",
+            "met someone online",
+            "online dating fraud",
+            "sent money to friend online",
+            "fell in love online",
+            "fake boyfriend girlfriend"
         ]
     }
 ]

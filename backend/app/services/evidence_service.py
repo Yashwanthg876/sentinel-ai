@@ -3,7 +3,7 @@ from PIL import Image
 import io
 import json
 import re
-from app.services.llm_provider import generate_completion
+from app.providers.llm_provider import get_llm_provider
 
 def process_evidence_image(image_bytes: bytes) -> dict:
     # 1. Open image and extract text using OCR
@@ -41,7 +41,8 @@ Extracted OCR text:
 """
 
     try:
-        llm_response = generate_completion(prompt)
+        provider = get_llm_provider()
+        llm_response = provider.generate(prompt)
         
         # Strip codeblock wrappers if present
         clean_json = re.sub(r"^```json\s*", "", llm_response, flags=re.MULTILINE)

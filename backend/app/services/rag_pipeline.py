@@ -1,5 +1,5 @@
 from app.services.embeddings import EmbeddingService
-from app.services.llm_provider import generate_completion
+
 from app.services.agents import get_agent
 from app.utils.logger import log_query
 

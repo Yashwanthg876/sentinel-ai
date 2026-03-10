@@ -1,8 +1,9 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
 from pydantic import BaseModel
 from typing import Optional, List
 from app.services.rag_pipeline import generate_response
 from app.services.language_service import translate_query, translate_response
+from app.auth import get_current_user
 
 router = APIRouter()
 
@@ -18,7 +19,7 @@ class Query(BaseModel):
     response_length: Optional[str] = "detailed" # 'brief', 'detailed'
 
 @router.post("/chat")
-def chat(query: Query):
+def chat(query: Query, current_user = Depends(get_current_user)):
     # Step 1: Translate non-English to English for Vector Search
     en_query = query.question
     if query.language and query.language != "en":

@@ -1,48 +1,36 @@
-:root {
-  --primary: #38bdf8;
-  --bg-dark: #0f172a;
-  --bg-panel: #1e293b;
-  --text-light: #f8fafc;
-  --text-muted: #94a3b8;
-  --accent: #2563eb;
-  --user-msg: #0284c7;
-  --bot-msg: #334155;
-  --border: #334155;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  width: 100%;
 }
 
 body {
-  margin: 0;
-  background-color: var(--bg-dark);
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  color: var(--text-light);
-  height: 100vh;
-  display: flex;
-  justify-content: center;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #090e1a;
+  color: #f0f6ff;
 }
 
-#root {
-  width: 100%;
-  height: 100%;
+input,
+button,
+select,
+textarea {
+  font-family: inherit;
 }
 
-* {
-  box-sizing: border-box;
-}
-
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--bg-dark);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--border);
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--text-muted);
+a {
+  color: inherit;
+  text-decoration: none;
 }

@@ -1,4 +1,4 @@
-from app.services.llm_provider import generate_completion
+from app.providers.llm_provider import get_llm_provider
 
 class LegalAdvisorAgent:
     def execute(self, query: str, context: str, history_context: str = "", length_instruction: str = "") -> str:
@@ -31,7 +31,8 @@ Context:
 
 User Query: {query}
 """
-        return generate_completion(prompt)
+        provider = get_llm_provider()
+        return provider.generate(prompt)
 
 class ReportingAssistantAgent:
     def execute(self, query: str, context: str, history_context: str = "", length_instruction: str = "") -> str:
@@ -62,7 +63,8 @@ Context:
 
 User Query: {query}
 """
-        return generate_completion(prompt)
+        provider = get_llm_provider()
+        return provider.generate(prompt)
 
 class GeneralWorkflowAgent:
     def execute(self, query: str, context: str, history_context: str = "", length_instruction: str = "") -> str:
@@ -97,7 +99,8 @@ Retrieved SOP Database Context:
 
 User Query: {query}
 """
-        return generate_completion(prompt)
+        provider = get_llm_provider()
+        return provider.generate(prompt)
 
 def get_agent(agent_type: str):
     if agent_type == "legal":
