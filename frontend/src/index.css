@@ -1,36 +1,32 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+@layer base {
+  body {
+    @apply bg-bgMain text-slate-50 font-sans selection:bg-primary/30 antialiased overflow-hidden min-h-screen text-[15px] leading-relaxed;
+  }
 }
 
-html,
-body,
-#root {
-  height: 100%;
-  width: 100%;
-}
+@layer utilities {
+  .glass-panel {
+    @apply bg-bgPanel/95 backdrop-blur-md border border-slate-700/50 shadow-xl;
+  }
 
-body {
-  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background: #090e1a;
-  color: #f0f6ff;
-}
+  .glow-primary {
+    @apply shadow-[0_0_15px_rgba(56, 189, 248, 0.4)];
+  }
 
-input,
-button,
-select,
-textarea {
-  font-family: inherit;
-}
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
 
-a {
-  color: inherit;
-  text-decoration: none;
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    @apply bg-slate-600 rounded-full;
+  }
 }
