@@ -119,6 +119,7 @@ export default function Login({ onLogin }) {
         localStorage.setItem("token", data.access_token);
         localStorage.setItem("user_email", data.user.email);
         localStorage.setItem("user_name", data.user.name || data.user.email);
+        localStorage.setItem("user_role", data.user.role || "public_user");
         onLogin(data.access_token, data.user);
     };
 

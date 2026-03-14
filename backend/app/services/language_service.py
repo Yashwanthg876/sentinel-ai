@@ -10,8 +10,11 @@ def translate_query(text: str) -> tuple[str, str]:
     try:
         translator = GoogleTranslator(source='auto', target='en')
         lang = getattr(translator, "source", "unknown")
+        
+        # Truncate queries to 4900 chars just to be safe from API crash
+        query_text = text[:4900]
         # Ensure 'source' gets correctly inferred by doing a translation
-        en_text = translator.translate(text)
+        en_text = translator.translate(query_text)
         
         # Unfortunately, older deep-translator versions don't always expose the detected language easily, 
         # so we do a quick check to see if the translation matches the original.
@@ -33,12 +36,16 @@ def translate_response(text: str, target_lang: str) -> str:
         return text
         
     try:
-        # Note: If target_lang is 'auto', it means we detected foreign text. 
-        # In this implementation, to provide Multi-lingual we can just allow the Frontend 
-        # to explicitly define language, or try to detect it.
-        # However, for robustness, if target_lang is an actual language code, we translate directly.
         translator = GoogleTranslator(source='en', target=target_lang)
-        return translator.translate(text)
+        # Handle 5000 character limit of Google Translate
+        if len(text) > 4900:
+            chunks = [text[i:i+4900] for i in range(0, len(text), 4900)]
+            translated_chunks = [translator.translate(chunk) for chunk in chunks]
+            return "".join(translated_chunks)
+        else:
+            return translator.translate(text)
     except Exception as e:
+        import traceback
         logging.error(f"Response translation error: {e}")
+        traceback.print_exc()
         return text

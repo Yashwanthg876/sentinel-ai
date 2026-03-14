@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 from sqlalchemy import func
 from app.database import get_db
@@ -10,10 +10,15 @@ from datetime import datetime, timedelta
 
 router = APIRouter()
 
-LOGS_FILE = os.path.join(os.path.dirname(os.path.dirname(__file__)), "logs", "query_logs.json")
+LOGS_FILE = os.path.join(os.path.dirname(os.path.dirname(__file__)), "logs", "query_logs.jsonl")
 
 def get_admin_user(current_user: User = Depends(get_current_user)):
     """Simple admin guard — first registered user (id=1) is admin. Extend as needed."""
+    if current_user.id != 1:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Admin privileges required"
+        )
     return current_user
 
 @router.get("/admin/stats")
@@ -66,10 +71,10 @@ def get_admin_stats(db: Session = Depends(get_db), current_user: User = Depends(
     if os.path.exists(LOGS_FILE):
         try:
             with open(LOGS_FILE, "r") as f:
-                logs = json.load(f)
+                logs = [json.loads(line) for line in f if line.strip()]
             query_stats["total_queries"] = len(logs)
             query_stats["low_confidence_triggers"] = sum(1 for l in logs if l.get("clarification_triggered"))
-            confidences = [l.get("confidence_score", 0) for l in logs if l.get("confidence_score") is not None]
+            confidences = [l.get("confidence", l.get("confidence_score", 0)) for l in logs if l.get("confidence") is not None or l.get("confidence_score") is not None]
             query_stats["avg_confidence"] = round(sum(confidences) / len(confidences), 3) if confidences else 0.0
         except Exception:
             pass

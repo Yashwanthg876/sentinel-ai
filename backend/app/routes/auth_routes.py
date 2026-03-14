@@ -16,9 +16,11 @@ router = APIRouter()
 
 # ─── Pydantic Schemas ──────────────────────────────────────────────────────────
 
+from pydantic import BaseModel, EmailStr, Field
+
 class UserCreate(BaseModel):
-    email: str
-    password: str
+    email: EmailStr
+    password: str = Field(..., min_length=6)
 
 class UserLogin(BaseModel):
     email: str
@@ -31,6 +33,7 @@ class UserResponse(BaseModel):
     id: int
     email: str
     name: Optional[str] = None
+    role: str
 
     class Config:
         orm_mode = True
@@ -42,16 +45,24 @@ class TokenResponse(BaseModel):
 
 # ─── Email / Password routes (existing) ───────────────────────────────────────
 
+from sqlalchemy.exc import IntegrityError
+
 @router.post("/register", response_model=TokenResponse)
 def register(user: UserCreate, db: Session = Depends(get_db)):
     db_user = db.query(User).filter(User.email == user.email).first()
     if db_user:
         raise HTTPException(status_code=400, detail="Email already registered")
+    
     hashed_password = get_password_hash(user.password)
     new_user = User(email=user.email, hashed_password=hashed_password)
     db.add(new_user)
-    db.commit()
-    db.refresh(new_user)
+    try:
+        db.commit()
+        db.refresh(new_user)
+    except IntegrityError:
+        db.rollback()
+        raise HTTPException(status_code=400, detail="Email already registered")
+        
     access_token = create_access_token(data={"sub": str(new_user.id)})
     return {"access_token": access_token, "token_type": "bearer", "user": new_user}
 
